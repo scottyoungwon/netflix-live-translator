@@ -1,25 +1,23 @@
 # Netflix Live Translator
 
 ## Vision
-Chrome extension that intercepts Korean subtitles on Netflix and replaces them with real-time English translations using Google Cloud Translate API.
+Chrome extension that intercepts Korean subtitles on Netflix and replaces them with real-time English translations.
 
-## Current State
-- Building MVP Chrome extension
-- Core files created: manifest.json, content.js, styles.css, popup.html/js
-- Translation: Google Cloud Translate API (Korean → English)
-- Display mode: Replace Korean with English (clean look)
+## Current State — MVP Complete
+- Extension loads on Netflix, watches subtitle DOM via MutationObserver
+- Korean text detected → sent to Google Cloud Translate API → English overlay replaces it
+- Works in both windowed and fullscreen mode
+- Subtitle timing lingers naturally (1.5s delay before clearing)
+- Translation cache (500 entries) prevents redundant API calls
+- Settings popup with API key input and on/off toggle
 
 ## Decisions Made
 - Chrome Extension (Manifest V3)
-- Google Cloud Translate API (Scott's choice)
-- Replace mode, not dual-subtitle mode
-- MutationObserver watching Netflix's `.player-timedtext-text-container` for subtitle changes
-- Translation cache (500 entries max) to avoid redundant API calls
+- Google Cloud Translate API (500k chars/month free)
+- Replace mode (English only, no dual subs)
+- Overlay attached inside Netflix player container (required for fullscreen)
+- `visibility: hidden` on Netflix's native subs (keeps DOM readable, hides visually)
 
 ## What's Next
-- Generate extension icons
-- Test on actual Netflix page
-- Scott needs a Google Cloud API key with Translation API enabled
-
-## Open Questions
-- Does Scott already have a Google Cloud account/API key?
+- Nothing urgent — MVP is working and shipped to GitHub
+- Potential future: support more language pairs, auto-detect source language, subtitle timing fine-tuning

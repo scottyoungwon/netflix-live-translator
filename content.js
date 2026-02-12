@@ -117,6 +117,8 @@
     if (hideTimer) clearTimeout(hideTimer);
     overlay.textContent = text;
     overlay.style.display = "block";
+    // Hide Netflix's native subs while we're showing our translation
+    document.body.classList.add("nlt-active");
   }
 
   function hideTranslation() {
@@ -128,6 +130,8 @@
         overlay.textContent = "";
         overlay.style.display = "none";
       }
+      // Unhide Netflix subs so non-Korean languages show normally
+      document.body.classList.remove("nlt-active");
     }, 1500);
   }
 
@@ -203,8 +207,6 @@
   function init() {
     if (observer) return;
 
-    // Add class to body to activate our CSS (hides Netflix subs)
-    document.body.classList.add("nlt-active");
     createOverlay();
 
     observer = new MutationObserver(() => {
