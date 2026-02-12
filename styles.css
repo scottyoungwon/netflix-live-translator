@@ -1,0 +1,31 @@
+/* Netflix Live Translator — Hide Netflix subs, show our overlay */
+
+/* Hide Netflix's native subtitles when extension is active */
+.nlt-active .player-timedtext-text-container,
+.nlt-active [data-uia="player-timedtext"] > div {
+  visibility: hidden !important;
+}
+
+/* Our English subtitle overlay — positioned inside the player for fullscreen support */
+#nlt-overlay {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2147483647;
+  max-width: 80%;
+  text-align: center;
+  pointer-events: none;
+  display: none;
+
+  /* Use the same font Netflix uses for subtitles */
+  font-family: "Netflix Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: max(28px, 2.25vw);
+  font-weight: 500;
+  color: #ffffff;
+  text-shadow:
+    1px 1px 3px rgba(0, 0, 0, 0.9),
+    0px 0px 6px rgba(0, 0, 0, 0.6);
+  line-height: 1.4;
+  padding: 4px 12px;
+}

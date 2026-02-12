@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 320px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #141414;
+      color: #e5e5e5;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #e50914;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h1 span {
+      font-size: 20px;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      color: #999;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px 12px;
+      background: #333;
+      border: 1px solid #555;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input[type="text"]:focus {
+      border-color: #e50914;
+    }
+
+    input[type="text"]::placeholder {
+      color: #777;
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .toggle-row span {
+      font-size: 14px;
+    }
+
+    .toggle {
+      position: relative;
+      width: 44px;
+      height: 24px;
+    }
+
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #555;
+      border-radius: 12px;
+      transition: 0.2s;
+    }
+
+    .slider:before {
+      content: "";
+      position: absolute;
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: 0.2s;
+    }
+
+    .toggle input:checked + .slider {
+      background: #e50914;
+    }
+
+    .toggle input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #e50914;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background: #f40612;
+    }
+
+    .status {
+      margin-top: 12px;
+      font-size: 12px;
+      text-align: center;
+      color: #999;
+      min-height: 16px;
+    }
+
+    .status.success {
+      color: #46d369;
+    }
+
+    .status.error {
+      color: #e50914;
+    }
+
+    .help {
+      margin-top: 12px;
+      font-size: 11px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .help a {
+      color: #e50914;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <h1><span>🎬</span> Netflix Live Translator</h1>
+
+  <div class="toggle-row">
+    <span>Translation</span>
+    <label class="toggle">
+      <input type="checkbox" id="enabled" checked>
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="field">
+    <label>Google Cloud API Key</label>
+    <input type="text" id="apiKey" placeholder="Enter your API key">
+  </div>
+
+  <button id="save">Save</button>
+
+  <div class="status" id="status"></div>
+
+  <div class="help">
+    Korean → English translation powered by Google Cloud Translate.
+    Reload the Netflix tab after saving your key.
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

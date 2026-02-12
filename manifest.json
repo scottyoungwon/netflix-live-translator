@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Netflix Live Translator",
+  "version": "1.0.0",
+  "description": "Real-time Korean to English subtitle translation for Netflix",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "https://translation.googleapis.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://*.netflix.com/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Netflix Live Translator"
+  },
+  "icons": {
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
